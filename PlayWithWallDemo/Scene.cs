@@ -42,7 +42,7 @@ namespace PlayWithWallDemo
 
         }
 
-        public void MoveImage(PictureBox ball)
+        public void moveBall(PictureBox ball)
         {
             if (ball.Left <= 4)
             {
@@ -60,6 +60,11 @@ namespace PlayWithWallDemo
             }
 
         }
+
+        /*public int MoveFoot(int c)
+        {
+            // return c - (Foot.getImage().Width / 2);
+        }*/
 
         public bool ballIsOut(int ballBottom, int groundBottom)
         {

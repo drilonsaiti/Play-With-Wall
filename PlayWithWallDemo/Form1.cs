@@ -20,6 +20,7 @@ namespace PlayWithWallDemo
         private Ball Ball;
         private Foot Foot;
         private Scene Scene;
+        private int slow_down = 15;
         public Form1()
         {
             Ball = new Ball();
@@ -43,27 +44,25 @@ namespace PlayWithWallDemo
         private void timer1_Tick(object sender, EventArgs e)
         {
             //Set the center of the foot to the position of the cursor
-            foot.Left = Cursor.Position.X - (foot.Width / 2);
+            foot.Left = Cursor.Position.X - (Foot.Image.Width / 2);
             ball.Left += Scene.speed_left;
             ball.Top += Scene.speed_top;
 
             if (Scene.isTouching(ball, foot))
             {
-                speed_top += 1;
-                speed_left += 1;
-                //When we shoot the ball
-                speed_top = -speed_top;
                 point += 1;
                 lbPoints.Text = "Points: " + point;
             }
 
-            if (point == 15)
+            if (point == slow_down)
             {
-                speed_left = 4;
-                speed_top = 4;
+                Scene.speed_left = 4 + (slow_down / 2) - 6;
+                Scene.speed_top = 4 + (slow_down / 2) - 6;
+                slow_down *= 2;
+
             }
 
-            Scene.MoveImage(ball);
+            Scene.moveBall(ball);
 
             if (Scene.ballIsOut(ball.Bottom, playground.Bottom))
             {
@@ -72,6 +71,7 @@ namespace PlayWithWallDemo
                 gameOver.Visible = true;
                 lbAfterGameOver.Visible = true;
             }
+            Invalidate(true);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -122,8 +122,8 @@ namespace PlayWithWallDemo
             if (e.KeyCode == Keys.F5)
             {
                 point = 0;
-                speed_left = 4;
-                speed_top = 4;
+                Scene.speed_left = 4;
+                Scene.speed_top = 4;
                 gameOver.Visible = false;
                 lbAfterGameOver.Visible = false;
                 ball.Left = 50;
@@ -132,6 +132,7 @@ namespace PlayWithWallDemo
                 label2.Visible = true;
                 information.Visible = true;
                 label3.Visible = true;
+                slow_down = 15;
             }
         }
 
@@ -147,6 +148,7 @@ namespace PlayWithWallDemo
             wall.drawTopWall(e.Graphics);
             wall.drawLeftWall(e.Graphics);
             wall.drawRightWall(e.Graphics);
+            //Invalidate(true);
         }
     }
 }

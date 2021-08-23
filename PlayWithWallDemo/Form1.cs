@@ -67,6 +67,8 @@ namespace PlayWithWallDemo
             if (Scene.ballIsOut(ball.Bottom, playground.Bottom))
             {
                 //Ball is out -> Stop the game
+                pointsEnd.Text = "Points: " + point;
+                pointsEnd.Visible = true;
                 timer1.Enabled = false;
                 gameOver.Visible = true;
                 lbAfterGameOver.Visible = true;
@@ -78,23 +80,14 @@ namespace PlayWithWallDemo
         {
             if (e.KeyCode == Keys.Left)
             {
-                label2.Visible = false;
-                information.Visible = false;
-                label3.Visible = false;
+                clickArrow();
                 foot.Image = Foot.getLeftSide();
-                Cursor.Hide();
-                timer1.Enabled = true;
             }
 
             if (e.KeyCode == Keys.Right)
             {
-                label2.Visible = false;
-                information.Visible = false;
-                label3.Visible = false;
+                clickArrow();
                 foot.Image = Foot.getRightSide();
-
-                Cursor.Hide();
-                timer1.Enabled = true;
             }
             if (e.KeyCode == Keys.Escape)
             {
@@ -103,39 +96,63 @@ namespace PlayWithWallDemo
 
             if (e.KeyCode == Keys.Space)
             {
-                timer1.Enabled = false;
-                lbPaused.Visible = true;
-                lbContinueInfo.Visible = true;
-                playground.BackColor = Color.DarkGray;
-                Cursor.Show();
+                pauseGame();
             }
             if (e.KeyCode == Keys.Enter)
             {
-                timer1.Enabled = true;
-                lbPaused.Visible = false;
-                lbContinueInfo.Visible = false;
-                playground.BackColor = Color.DimGray;
-                Cursor.Hide();
+                continueGame();
 
             }
 
             if (e.KeyCode == Keys.F5)
             {
-                point = 0;
-                Scene.speed_left = 4;
-                Scene.speed_top = 4;
-                gameOver.Visible = false;
-                lbAfterGameOver.Visible = false;
-                ball.Left = 50;
-                ball.Top = 50;
-                lbPoints.Text = "Points: 0";
-                label2.Visible = true;
-                information.Visible = true;
-                label3.Visible = true;
-                slow_down = 15;
+                restartGame();
             }
         }
 
+        public void pauseGame()
+        {
+            timer1.Enabled = false;
+            lbPaused.Visible = true;
+            lbContinueInfo.Visible = true;
+            playground.BackColor = Color.DarkGray;
+            Cursor.Show();
+        }
+        public void continueGame()
+        {
+            timer1.Enabled = true;
+            lbPaused.Visible = false;
+            lbContinueInfo.Visible = false;
+            playground.BackColor = Color.DimGray;
+            Cursor.Hide();
+
+        }
+        public void clickArrow()
+        {
+            pointsEnd.Visible = false;
+            label2.Visible = false;
+            information.Visible = false;
+            label3.Visible = false;
+            Cursor.Hide();
+            timer1.Enabled = true;
+        }
+        public void restartGame()
+        {
+            pointsEnd.Visible = false;
+            timer1.Enabled = false;
+            point = 0;
+            Scene.speed_left = 4;
+            Scene.speed_top = 4;
+            gameOver.Visible = false;
+            lbAfterGameOver.Visible = false;
+            ball.Left = 50;
+            ball.Top = 50;
+            lbPoints.Text = "Points: 0";
+            label2.Visible = true;
+            information.Visible = true;
+            label3.Visible = true;
+            slow_down = 15;
+        }
 
 
         private void Form1_Paint(object sender, PaintEventArgs e)

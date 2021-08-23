@@ -40,13 +40,12 @@ namespace PlayWithWallDemo
             this.information = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.wallBottom = new System.Windows.Forms.PictureBox();
-            this.wallRight = new System.Windows.Forms.PictureBox();
             this.lbPoints = new System.Windows.Forms.Label();
             this.ball = new System.Windows.Forms.PictureBox();
             this.foot = new System.Windows.Forms.PictureBox();
+            this.pointsEnd = new System.Windows.Forms.Label();
             this.playground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wallBottom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wallRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.foot)).BeginInit();
             this.SuspendLayout();
@@ -60,6 +59,7 @@ namespace PlayWithWallDemo
             // 
             this.playground.BackColor = System.Drawing.Color.DimGray;
             this.playground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.playground.Controls.Add(this.pointsEnd);
             this.playground.Controls.Add(this.lbAfterGameOver);
             this.playground.Controls.Add(this.gameOver);
             this.playground.Controls.Add(this.lbContinueInfo);
@@ -68,7 +68,6 @@ namespace PlayWithWallDemo
             this.playground.Controls.Add(this.information);
             this.playground.Controls.Add(this.label2);
             this.playground.Controls.Add(this.wallBottom);
-            this.playground.Controls.Add(this.wallRight);
             this.playground.Controls.Add(this.lbPoints);
             this.playground.Controls.Add(this.ball);
             this.playground.Controls.Add(this.foot);
@@ -164,15 +163,6 @@ namespace PlayWithWallDemo
             this.wallBottom.TabStop = false;
             this.wallBottom.Visible = false;
             // 
-            // wallRight
-            // 
-            this.wallRight.Image = global::PlayWithWallDemo.Properties.Resources.wallSide;
-            this.wallRight.Location = new System.Drawing.Point(1044, 4);
-            this.wallRight.Name = "wallRight";
-            this.wallRight.Size = new System.Drawing.Size(15, 620);
-            this.wallRight.TabIndex = 5;
-            this.wallRight.TabStop = false;
-            // 
             // lbPoints
             // 
             this.lbPoints.AutoSize = true;
@@ -203,6 +193,17 @@ namespace PlayWithWallDemo
             this.foot.TabIndex = 0;
             this.foot.TabStop = false;
             // 
+            // pointsEnd
+            // 
+            this.pointsEnd.AutoSize = true;
+            this.pointsEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pointsEnd.Location = new System.Drawing.Point(388, 355);
+            this.pointsEnd.Name = "pointsEnd";
+            this.pointsEnd.Size = new System.Drawing.Size(282, 73);
+            this.pointsEnd.TabIndex = 14;
+            this.pointsEnd.Text = "Points: 0";
+            this.pointsEnd.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,7 +217,6 @@ namespace PlayWithWallDemo
             this.playground.ResumeLayout(false);
             this.playground.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wallBottom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wallRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.foot)).EndInit();
             this.ResumeLayout(false);
@@ -230,7 +230,6 @@ namespace PlayWithWallDemo
         private System.Windows.Forms.PictureBox foot;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lbPoints;
-        private System.Windows.Forms.PictureBox wallRight;
         private System.Windows.Forms.PictureBox wallBottom;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -239,6 +238,7 @@ namespace PlayWithWallDemo
         private System.Windows.Forms.Label lbContinueInfo;
         private System.Windows.Forms.Label lbAfterGameOver;
         private System.Windows.Forms.Label gameOver;
+        private System.Windows.Forms.Label pointsEnd;
     }
 }
 
